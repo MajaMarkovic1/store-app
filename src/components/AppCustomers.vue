@@ -1,13 +1,43 @@
 <template>
   <div>
       <h1>Customers</h1>
+      <table class="table table-condensed">
+            <thead>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </thead>
+            <tbody>
+                <tr v-for="(customer, index) in customers" :key="index">
+                    <td>{{ customer.firstName }}</td>
+                    <td>{{ customer.lastName }}</td>
+                    <td>{{ customer.email }}</td>
+                    <button class="btn btn-success" @click="removeCustomer(customer)">Delete</button>
+                </tr>
+            </tbody>
+        </table>
+      
   </div>
 </template>
 
 <script>
+
+import { customerService } from '../services/CustomerService'
+//stavljaju se { } jer nije export default nego samo export u service.js
+
 export default {
   name: 'AppCustomers',
- 
+  data(){
+      return {
+          customers: customerService.list()
+      }
+  },
+  methods: {
+      removeCustomer(customer){
+          customerService.deleteCustomer(customer);
+      }
+  }
+    
 }
 </script>
 
