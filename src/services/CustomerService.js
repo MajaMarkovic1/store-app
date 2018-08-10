@@ -4,19 +4,24 @@ const customers = [
         firstName: 'Maja', 
         lastName: 'Markovic', 
         email: 'example1@gmail.com',
-        products: []
+        products: [],
+       
     },
     {   id: 2, 
         firstName: 'Natasa', 
         lastName: 'Radovnovic', 
         email: 'example2@gmail.com',
-        products: []
+        products: [],
+        
+        
     },
     {   id: 3, 
         firstName: 'Jelena', 
         lastName: 'Stojsin', 
         email: 'example3@gmail.com',
-        products: []
+        products: [],
+        
+        
     },
 ]
 
@@ -33,8 +38,17 @@ class CustomerService {
     
     
     addCustomer(newCustomer){
+        newCustomer.id = nextId;
         customers.push(newCustomer);
-        newCustomer = {};
+        nextId++;
+    };
+
+    showLatestPurchases(customer){
+        return customer;
+    };
+
+    find(id){
+        return customers.find(customer => customer.id == id);
     }
 }
 export const customerService = new CustomerService();

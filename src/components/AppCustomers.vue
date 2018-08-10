@@ -15,13 +15,22 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th></th>
+                <th></th>
+                
             </thead>
             <tbody>
                 <tr v-for="(customer, index) in customers" :key="index">
                     <td>{{ customer.firstName }}</td>
                     <td>{{ customer.lastName }}</td>
                     <td>{{ customer.email }}</td>
-                    <button class="btn btn-success" @click="removeCustomer(customer)">Delete</button>
+                    <td><button class="btn btn-success" @click="removeCustomer(customer)">Delete</button></td>
+                    <td><router-link 
+                        class="list-group-item list-group-item-action"
+                        :to="{ name: 'latest-purchases', params: {id: customer.id}}">
+                        Latest purchases
+                        </router-link></td>
+                    
                 </tr>
             </tbody>
         </table>
@@ -48,6 +57,9 @@ export default {
       },
     addCustom(){
         customerService.addCustomer(this.newCustomer);
+    },
+    latestPurchases(customer){
+        customerService.showLatestPurchases(customer);
     }
   }
     
