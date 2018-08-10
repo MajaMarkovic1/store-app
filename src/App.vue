@@ -1,7 +1,18 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <router-link to="/customers" class="nav-link">Customers</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/products" class="nav-link">Products</router-link> 
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <router-view></router-view>
   </div>
 </template>
 
