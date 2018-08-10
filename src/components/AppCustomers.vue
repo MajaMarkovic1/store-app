@@ -1,6 +1,15 @@
 <template>
   <div>
       <h1>Customers</h1>
+      <form @submit.prevent>
+          <label>First name: </label>
+          <input v-model="newCustomer.firstName" type="text" placeholder="First name"><br>
+          <label>Last name: </label>
+          <input v-model="newCustomer.lastName" type="text" placeholder="First name"><br>
+          <label>Email: </label>
+          <input v-model="newCustomer.email" type="text" placeholder="Email"><br>
+          <button @click="addCustom()">Add customer</button>
+      </form>
       <table class="table table-condensed">
             <thead>
                 <th>First Name</th>
@@ -29,13 +38,17 @@ export default {
   name: 'AppCustomers',
   data(){
       return {
-          customers: customerService.list()
+          customers: customerService.list(),
+          newCustomer: {}
       }
   },
   methods: {
       removeCustomer(customer){
           customerService.deleteCustomer(customer);
-      }
+      },
+    addCustom(){
+        customerService.addCustomer(this.newCustomer);
+    }
   }
     
 }
