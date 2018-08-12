@@ -1,12 +1,30 @@
 <template>
   <div>
       <h1>Products</h1>
+      <table class="table table-condensed">
+          <thead>
+              <th>Title</th>
+              <th>Quantity</th>
+          </thead>
+          <tbody>
+              <tr v-for="(product, index) in products" :key="index">
+                  <td>{{ product.title }}</td>
+                  <td>{{ product.quantity }}</td>
+              </tr>
+          </tbody>
+      </table>
   </div>
 </template>
 
 <script>
+import { productService } from '../services/ProductService'
 export default {
   name: 'AppProducts',
+  data(){
+    return {
+      products: productService.list()
+    }
+  }
  
 }
 </script>

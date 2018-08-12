@@ -1,14 +1,14 @@
 <template>
   <div>
       <h1>Customers</h1>
-      <form @submit.prevent>
+      <form @submit.prevent class="form-group">
           <label>First name: </label>
-          <input v-model="newCustomer.firstName" type="text" placeholder="First name"><br>
+          <input v-model="newCustomer.firstName" class="form-control" id="formGroupExampleInput" type="text" placeholder="First name"><br>
           <label>Last name: </label>
-          <input v-model="newCustomer.lastName" type="text" placeholder="First name"><br>
+          <input v-model="newCustomer.lastName" class="form-control" id="formGroupExampleInput" type="text" placeholder="First name"><br>
           <label>Email: </label>
-          <input v-model="newCustomer.email" type="text" placeholder="Email"><br>
-          <button @click="addCustom()">Add customer</button>
+          <input v-model="newCustomer.email" class="form-control" id="formGroupExampleInput" type="text" placeholder="Email"><br>
+          <button class="btn btn-success" @click="addCustomer()">Add customer</button>
       </form>
       <table class="table table-condensed">
             <thead>
@@ -26,7 +26,6 @@
                     <td>{{ customer.email }}</td>
                     <td><button class="btn btn-success" @click="removeCustomer(customer)">Delete</button></td>
                     <td><router-link 
-                        class="list-group-item list-group-item-action"
                         :to="{ name: 'latest-purchases', params: {id: customer.id}}">
                         Latest purchases
                         </router-link></td>
@@ -52,10 +51,10 @@ export default {
       }
   },
   methods: {
-      removeCustomer(customer){
+    removeCustomer(customer){
           customerService.deleteCustomer(customer);
       },
-    addCustom(){
+    addCustomer(){
         customerService.addCustomer(this.newCustomer);
     },
     latestPurchases(customer){
