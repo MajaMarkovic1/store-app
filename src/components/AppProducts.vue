@@ -1,18 +1,22 @@
 <template>
   <div>
       <h1>Products</h1>
+      <div class="active-cyan-4 mb-4">
+          <input v-model="searchedProduct.title" class="form-control" type="text" placeholder="Search" aria-label="Search">
+      </div>
       <table class="table table-condensed">
-          <thead>
-              <th>Title</th>
-              <th>Quantity</th>
-          </thead>
-          <tbody>
-              <tr v-for="(product, index) in products" :key="index">
-                  <td>{{ product.title }}</td>
-                  <td>{{ product.quantity }}</td>
-              </tr>
-          </tbody>
-      </table>
+        <thead>
+          <th>Title</th>
+          <th>Quantity</th>
+        </thead>
+        <tbody
+          v-for="(product, index) in products" :key="index" 
+          v-if="product.title === searchedProduct.title">
+          <td> {{ product.title }}</td>
+          <td> {{ product.quantity }}</td>
+          
+        </tbody>
+      </table>      
   </div>
 </template>
 
@@ -22,7 +26,8 @@ export default {
   name: 'AppProducts',
   data(){
     return {
-      products: productService.list()
+      products: productService.list(),
+      searchedProduct: {}
     }
   }
  

@@ -25,7 +25,11 @@ class ProductService{
     list(){
         return products;
     };
-    
+    showProduct(){
+        products.forEach(function (product){
+            return product;
+        })
+    }
 }
 
 export const productService = new ProductService();
