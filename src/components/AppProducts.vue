@@ -8,12 +8,17 @@
         <thead>
           <th>Title</th>
           <th>Quantity</th>
+          <th></th>
+          <th></th>
+          
         </thead>
         <tbody
           v-for="(product, index) in products" :key="index" 
           v-if="product.title === searchedProduct.title">
           <td> {{ product.title }}</td>
           <td> {{ product.quantity }}</td>
+          <td><button @click="addProduct(product)">+</button></td>
+          <td><button @click="removeProduct(product)">-</button></td>
           
         </tbody>
       </table>      
@@ -28,6 +33,14 @@ export default {
     return {
       products: productService.list(),
       searchedProduct: {}
+    }
+  },
+  methods: {
+    addProduct(product){
+      return productService.addProduct(product);
+    },
+    removeProduct(product){
+      return productService.removeProduct(product);
     }
   }
  

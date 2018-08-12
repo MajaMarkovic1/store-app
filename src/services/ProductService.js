@@ -21,15 +21,25 @@ const products = [
     }
 ]
 
+
 class ProductService{
     list(){
         return products;
     };
-    showProduct(){
-        products.forEach(function (product){
-            return product;
+    addProduct(product){
+        products.forEach(function (item){
+            if (item.id === product.id){
+                product.quantity++;   
+            }
         })
-    }
+    };
+    removeProduct(product){
+        products.forEach(function (item){
+            if (item.id === product.id && product.quantity > 0){
+                product.quantity--;   
+            }
+        })
+    };
 }
 
 export const productService = new ProductService();
