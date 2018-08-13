@@ -41,9 +41,11 @@
 
 import { customerService } from '../services/CustomerService'
 //stavljaju se { } jer nije export default nego samo export u service.js
+import AppBuyProduct from '../components/AppBuyProduct.vue'
 
 export default {
   name: 'AppCustomers',
+
   data(){
       return {
           customers: customerService.list(),

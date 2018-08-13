@@ -1,10 +1,11 @@
 <template>
     <div>
+        <h3>Customer:</h3>
         <div><strong>First name:</strong> {{ customer.firstName }}</div>
         <div><strong>Last name:</strong> {{ customer.lastName }}</div>
         <div><strong>Email:</strong> {{ customer.email }}</div>
         <strong>Products:</strong>
-        <div v-for="(product, key) in products" :key="key">{{ product.title }}</div>
+        <div v-for="product in customer.products" :key="product.id">{{ product.title }}</div>
         <div><router-link to="/customers">Back</router-link></div>
     </div>
 </template>

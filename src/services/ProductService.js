@@ -40,6 +40,13 @@ class ProductService{
             }
         })
     };
+    buyProduct(product){
+        return product;
+    };
+
+    find(id){
+        return products.find(product => product.id === id);
+    }
 }
 
 export const productService = new ProductService();

@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h1>Products</h1>
+      <h3>Search product</h3><br>
       <div class="active-cyan-4 mb-4">
           <input v-model="searchedProduct.title" class="form-control" type="text" placeholder="Search" aria-label="Search">
       </div>
@@ -17,11 +17,29 @@
           v-if="product.title === searchedProduct.title">
           <td> {{ product.title }}</td>
           <td> {{ product.quantity }}</td>
+        </tbody>
+      </table> <br>
+      <h1>Products</h1>      
+      <table class="table table-condensed">
+        <thead>
+          <th>Title</th>
+          <th>Quantity</th>
+          <th></th>
+          <th></th>
+          <th></th>          
+        </thead>
+        <tbody v-for="(product, index) in products" :key="index">
+          <td> {{ product.title }}</td>
+          <td> {{ product.quantity }}</td>
           <td><button @click="addProduct(product)">+</button></td>
           <td><button @click="removeProduct(product)">-</button></td>
-          
+          <td><router-link
+            :to="{ name: 'buy-product', params: {id: product.id}}">
+            Buy</router-link></td>
         </tbody>
-      </table>      
+      </table>  
+      
+           
   </div>
 </template>
 
@@ -41,6 +59,9 @@ export default {
     },
     removeProduct(product){
       return productService.removeProduct(product);
+    },
+    buyProduct(product){
+      return productService.buyProduct(product);
     }
   }
  

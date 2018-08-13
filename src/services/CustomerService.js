@@ -49,6 +49,15 @@ class CustomerService {
 
     find(id){
         return customers.find(customer => customer.id == id);
+    };
+
+    addProduct(customer, product){
+        customers.forEach(function(person){
+            if (person.id === customer.id){
+                person.products.push(product);
+            }
+        })
+       
     }
 }
 export const customerService = new CustomerService();
